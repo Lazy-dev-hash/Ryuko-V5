@@ -23,7 +23,7 @@ module.exports.run = async function ({ api, event, args }) {
     return api.sendMessage("Please provide a question.\n\nExample: ai what is the solar system?", threadID, messageID);
   }
 
-  const queryApiUrl = `https://jonellccprojectapis10.adaptable.app/api/gptconvo?ask=${encodeURIComponent(message)}&id=${senderID}`;
+  const queryApiUrl = `https://ccprojectapis.ddns.net/api/chatgpt?input=${encodeURIComponent(message)}&id=${senderID}`;
 
   // Sending initial "searching" message
   const lad = await api.sendMessage("🔎 Searching for an answer. Please wait...", threadID, messageID);
@@ -35,7 +35,7 @@ module.exports.run = async function ({ api, event, args }) {
 
       if (attachment.type === "photo") {
         const imageURL = attachment.url;
-        const geminiApiUrl = `https://joshweb.click/gemini?prompt=${encodeURIComponent(message)}&url=${encodeURIComponent(imageURL)}`;
+        const geminiApiUrl = `https://ccprojectapis.ddns.net/api/gemini?ask=${encodeURIComponent(message)}&url=${encodeURIComponent(imageURL)}`;
 
         const geminiResponse = await axios.get(geminiApiUrl);
         const caption = geminiResponse.data.gemini;
